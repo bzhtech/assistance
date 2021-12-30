@@ -12,4 +12,5 @@ sed -i 's/.*HOOKS=.*/HOOKS="base udev memdisk archiso_shutdown archiso archiso_l
 
 # upgrade kernel and archiso
 # https://bbs.archlinux.org/viewtopic.php?pid=1897394#p1897394
+mkdir -p /var/cache/pacman/pkg
 pacman -Syu --noconfirm archiso linux --overwrite /usr/lib\*/p11-kit-trust.so

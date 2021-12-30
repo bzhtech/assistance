@@ -1,6 +1,4 @@
 #!/bin/bash
-pacman -Sy
-
 pacman -S --noconfirm dialog \
 gpart \
 iftop \
