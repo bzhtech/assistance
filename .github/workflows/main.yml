@@ -10,3 +10,6 @@ jobs:
         with:
           fetch-depth: 0
           path: self
+      - name: install dependencies
+        run: |
+           find .
