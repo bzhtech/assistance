@@ -1,3 +1,5 @@
 #!/bin/bash
-pacman -Ss
+mkdir -p /var/lib/pacman/local
+mkdir -p /var/lib/pacman/sync
+pacman -Sy
 pacman -S mksquashfs xorriso

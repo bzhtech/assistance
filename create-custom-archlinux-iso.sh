@@ -22,12 +22,12 @@ function create_CustomISO()
        $project/customiso
 }
 
-for montage in $(sudo mount | grep arch_custom | awk '{print $3}')
+for montage in $(mount | grep self | awk '{print $3}')
 do
-   sudo umount -l "$montage"
+   umount -l "$montage"
 done
 
-
+echo "PATH $(pwd)"
 
 [[ -d $project/customiso ]] && rm -rf $project/customiso
 [[ ! -d /tmp/archiso ]] && mkdir /tmp/archiso
