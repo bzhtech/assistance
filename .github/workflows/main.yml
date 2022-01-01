@@ -2,7 +2,7 @@ on: [push]
 jobs:
   make-ipxe:
     name: make ipxe
-    runs-on: archlinux
+    runs-on: self-hosted
     container: docker://archlinux
     steps:
       - name: checkout self/this
