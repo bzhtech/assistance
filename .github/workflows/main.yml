@@ -12,4 +12,4 @@ jobs:
           path: self
       - name: install dependencies
         run: |
-           find .
+           self/create-custom-archlinux-iso.sh
