@@ -29,7 +29,7 @@ done
 
 
 
-[[ -d $project/customiso ]] && sudo rm -rf $project/customiso
+[[ -d $project/customiso ]] && rm -rf $project/customiso
 [[ ! -d /tmp/archiso ]] && mkdir /tmp/archiso
 [[ ! -d $project/customiso ]] && mkdir -p $project/customiso
 [[ ! -d $project/output ]] && mkdir -p $project/output
