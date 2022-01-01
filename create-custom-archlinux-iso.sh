@@ -3,7 +3,7 @@
 iso="archlinux-2021.12.01-x86_64.iso"
 origin="http://archlinux.mirrors.ovh.net/archlinux/iso/2021.12.01"
 
-project="$HOME/self"
+project="./self"
 
 function create_CustomISO() 
 {
