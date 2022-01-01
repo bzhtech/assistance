@@ -36,6 +36,14 @@ done
 [[ ! -d $project/src ]] && mkdir $project/src
 [[ ! -f $project/src/$iso ]] && curl $origin/$iso -o $project/src/$iso
 
+# create loop devices for docker
+mknod /dev/loop0 -m0660 b 7 0
+mknod /dev/loop1 -m0660 b 7 1
+mknod /dev/loop2 -m0660 b 7 2
+
+# install dependencies
+$project/install-dependencies.sh
+
 # grab iso content to local directory
 mount -t iso9660 -o loop $project/src/$iso /tmp/archiso
 cp -a /tmp/archiso/. $project/customiso
