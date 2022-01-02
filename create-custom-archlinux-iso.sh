@@ -18,7 +18,7 @@ function create_CustomISO()
        -eltorito-catalog syslinux/boot.cat \
        -no-emul-boot -boot-load-size 4 -boot-info-table \
        -isohybrid-mbr $project/customiso/syslinux/isohdpfx.bin \
-       -output $project/output/arch-custom.iso \
+       -output $project/output/assistance.iso \
        $project/customiso
 }
 
