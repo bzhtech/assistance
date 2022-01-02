@@ -47,17 +47,17 @@ osirrox -indev $project/src/$iso -extract / $project/customiso
 
 # extract squashfs
 cd $project/customiso/arch/x86_64
-unsquashfs airootfs.sfs
-cp ../boot/x86_64/vmlinuz-linux squashfs-root/boot/vmlinuz-linux
-rm squashfs-root/etc/resolv.conf
-cp /etc/resolv.conf squashfs-root/etc/
+sudo unsquashfs airootfs.sfs
+sudo cp ../boot/x86_64/vmlinuz-linux squashfs-root/boot/vmlinuz-linux
+sudo rm squashfs-root/etc/resolv.conf
+sudo cp /etc/resolv.conf squashfs-root/etc/
 
-cp $project/update-pacman-database.sh squashfs-root/root/
-cp $project/upgrade-kernel.sh squashfs-root/root/
-cp $project/add-packages-to-arch.sh squashfs-root/root/
-cp $project/add-aurutils-package-for-aur.sh squashfs-root/etc/skel/
-cp $project/install-teamviewer.sh squashfs-root/etc/skel/
-cp $project/useradd.sh squashfs-root/root/
+sudo cp $project/update-pacman-database.sh squashfs-root/root/
+sudo cp $project/upgrade-kernel.sh squashfs-root/root/
+sudo cp $project/add-packages-to-arch.sh squashfs-root/root/
+sudo cp $project/add-aurutils-package-for-aur.sh squashfs-root/etc/skel/
+sudo cp $project/install-teamviewer.sh squashfs-root/etc/skel/
+sudo cp $project/useradd.sh squashfs-root/root/
 
 # add support service
 #cp $project/systemd/secure-tunnel@.service squashfs-root/etc/systemd/system/
@@ -68,22 +68,22 @@ sudo mount --bind /proc squashfs-root/proc
 sudo mount --bind /dev squashfs-root/dev
 
 # chroot into extracted squashfs
-chroot squashfs-root /root/update-pacman-database.sh
-chroot squashfs-root /root/add-packages-to-arch.sh
-chroot squashfs-root /root/useradd.sh
+sudo chroot squashfs-root /root/update-pacman-database.sh
+sudo chroot squashfs-root /root/add-packages-to-arch.sh
+sudo chroot squashfs-root /root/useradd.sh
 
 # install aur utils pour aur package and teamviewer install
-chroot squashfs-root su - archlinux /home/archlinux/add-aurutils-package-for-aur.sh
-chroot squashfs-root su - archlinux /home/archlinux/install-teamviewer.sh
+sudo chroot squashfs-root su - archlinux /home/archlinux/add-aurutils-package-for-aur.sh
+sudo chroot squashfs-root su - archlinux /home/archlinux/install-teamviewer.sh
 
 # create update kernel and move new kernel from squashfs to new iso directory
-chroot squashfs-root /root/upgrade-kernel.sh
-mv squashfs-root/boot/vmlinuz-linux $project/customiso/arch/boot/x86_64/vmlinuz
-mv squashfs-root/boot/initramfs-linux.img $project/customiso/arch/boot/x86_64/archiso.img
-rm squashfs-root/boot/initramfs-linux-fallback.img
+sudo chroot squashfs-root /root/upgrade-kernel.sh
+sudo mv squashfs-root/boot/vmlinuz-linux $project/customiso/arch/boot/x86_64/vmlinuz
+sudo mv squashfs-root/boot/initramfs-linux.img $project/customiso/arch/boot/x86_64/archiso.img
+sudo rm squashfs-root/boot/initramfs-linux-fallback.img
 
 # mv package list from squashfs to new iso directory
-mv squashfs-root/pkglist.txt $project/customiso/arch/pkglist.x86_64.txt
+sudo mv squashfs-root/pkglist.txt $project/customiso/arch/pkglist.x86_64.txt
 
 # umount dev proc chroot before make new squashfs
 cd $project/customiso/arch/x86_64
@@ -93,7 +93,7 @@ sudo umount -l squashfs-root/dev
 
 # recreate squashfs file
 rm airootfs.sfs
-mksquashfs squashfs-root airootfs.sfs
+sudo mksquashfs squashfs-root airootfs.sfs
 
 # create new iso file
 cd $project/customiso
