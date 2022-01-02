@@ -7,12 +7,12 @@ jobs:
       - name: delete old files
         run: |
            sudo rm -rf ${GITHUB_WORKSPACE}/self
-      - name: checkout & build
+      - name: checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
           path: self
-      - name: install dependencies
+      - name: build iso
         run: |
            self/create-custom-archlinux-iso.sh
       - name: upload ISO as artifact
