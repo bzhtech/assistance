@@ -4,6 +4,9 @@ jobs:
     name: make ipxe
     runs-on: self-hosted
     steps:
+      - name: delete old folder
+        run: |
+           sudo rm -rf ${GITHUB_WORKSPACE}/self
       - name: checkout self/this
         uses: actions/checkout@v2
         with:
