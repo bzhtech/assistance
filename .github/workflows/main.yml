@@ -4,7 +4,7 @@ jobs:
     name: make ipxe
     runs-on: self-hosted
     container: docker://archlinux
-      options: --privileged
+      options: "--privileged"
     steps:
       - name: checkout self/this
         uses: actions/checkout@v2
