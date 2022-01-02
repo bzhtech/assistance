@@ -22,9 +22,9 @@ function create_CustomISO()
        $project/customiso
 }
 
-for montage in $(mount | grep self | awk '{print $3}')
+for montage in $(sudo mount | grep self | awk '{print $3}')
 do
-   umount -l "$montage"
+   sudo umount -l "$montage"
 done
 
 echo "PATH $(pwd)"
@@ -37,7 +37,7 @@ echo "PATH $(pwd)"
 [[ ! -f $project/src/$iso ]] && curl $origin/$iso -o $project/src/$iso
 
 # install dependencies
-$project/install-dependencies.sh
+#$project/install-dependencies.sh
 
 # grab iso content to local directory
 osirrox -indev $project/src/$iso -extract / $project/customiso
@@ -60,12 +60,12 @@ cp $project/install-teamviewer.sh squashfs-root/etc/skel/
 cp $project/useradd.sh squashfs-root/root/
 
 # add support service
-cp $project/systemd/secure-tunnel@.service squashfs-root/etc/systemd/system/
+#cp $project/systemd/secure-tunnel@.service squashfs-root/etc/systemd/system/
 # add config for support service
 #cp $project/systemd/service-tunnel@grozours.fr squashfs-root/etc/default/
 
-mount --bind /proc squashfs-root/proc
-mount --bind /dev squashfs-root/dev
+sudo mount --bind /proc squashfs-root/proc
+sudo mount --bind /dev squashfs-root/dev
 
 # chroot into extracted squashfs
 chroot squashfs-root /root/update-pacman-database.sh
@@ -88,8 +88,8 @@ mv squashfs-root/pkglist.txt $project/customiso/arch/pkglist.x86_64.txt
 # umount dev proc chroot before make new squashfs
 cd $project/customiso/arch/x86_64
 
-umount -l squashfs-root/proc
-umount -l squashfs-root/dev
+sudo umount -l squashfs-root/proc
+sudo umount -l squashfs-root/dev
 
 # recreate squashfs file
 rm airootfs.sfs
