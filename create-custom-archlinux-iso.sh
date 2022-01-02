@@ -41,9 +41,6 @@ echo "PATH $(pwd)"
 
 # grab iso content to local directory
 osirrox -indev $project/src/$iso -extract / $project/customiso
-#mount -t iso9660 -o loop $project/src/$iso /tmp/archiso
-#cp -a /tmp/archiso/. $project/customiso
-#umount /tmp/archiso
 
 # extract squashfs
 cd $project/customiso/arch/x86_64
@@ -61,8 +58,6 @@ sudo cp $project/useradd.sh squashfs-root/root/
 
 # add support service
 #cp $project/systemd/secure-tunnel@.service squashfs-root/etc/systemd/system/
-# add config for support service
-#cp $project/systemd/service-tunnel@grozours.fr squashfs-root/etc/default/
 
 sudo mount --bind /proc squashfs-root/proc
 sudo mount --bind /dev squashfs-root/dev
@@ -75,6 +70,7 @@ sudo chroot squashfs-root /root/useradd.sh
 # install aur utils pour aur package and teamviewer install
 sudo chroot squashfs-root su - archlinux /home/archlinux/add-aurutils-package-for-aur.sh
 sudo chroot squashfs-root su - archlinux /home/archlinux/install-teamviewer.sh
+sudo chroot squashfs-root su - archlinux /home/archlinux/enable-teamviewer.sh
 
 # create update kernel and move new kernel from squashfs to new iso directory
 sudo chroot squashfs-root /root/upgrade-kernel.sh
@@ -92,12 +88,12 @@ sudo umount -l squashfs-root/proc
 sudo umount -l squashfs-root/dev
 
 # recreate squashfs file
-rm airootfs.sfs
+sudo rm airootfs.sfs
 sudo mksquashfs squashfs-root airootfs.sfs
 
 # create new iso file
 cd $project/customiso
-rm -rf arch/x86_64/squashfs-root
-rm -f arch-custom.iso
+sudo rm -rf arch/x86_64/squashfs-root
+sudo rm -f output/arch-custom.iso
 
 create_CustomISO

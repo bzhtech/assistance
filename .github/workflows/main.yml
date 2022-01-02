@@ -15,3 +15,8 @@ jobs:
       - name: install dependencies
         run: |
            self/create-custom-archlinux-iso.sh
+      - name: upload ISO as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: assistance.iso
+          path: ${GITHUB_WORKSPACE}/self/output/arch-custom.iso
