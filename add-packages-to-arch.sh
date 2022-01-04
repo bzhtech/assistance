@@ -12,7 +12,8 @@ git \
 make \
 m4 \
 binutils \
-libffi
+libffi \
+lxqt
 
 # create package list
 LANG=C pacman -Sl | awk '/\[installed\]$/ {print $1 "/" $2 "-" $3}' > /pkglist.txt

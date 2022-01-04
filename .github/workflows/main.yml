@@ -6,17 +6,12 @@ jobs:
     steps:
       - name: delete old files
         run: |
-           echo "${GITHUB_WORKSPACE}"
            sudo rm -rf ${GITHUB_WORKSPACE}/self
       - name: checkout
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
           path: self
-      - name: echo workspace
-        run: |
-           echo "GITHUB_WORKSPACE ${GITHUB_WORKSPACE}"
-           echo "github.workspace ${{github.workspace}}"
       - name: build iso
         run: |
            self/create-custom-archlinux-iso.sh
