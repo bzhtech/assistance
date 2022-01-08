@@ -71,6 +71,12 @@ sudo cp $project/enable-teamviewer.sh squashfs-root/etc/skel/
 sudo mount --bind /proc squashfs-root/proc
 sudo mount --bind /dev squashfs-root/dev
 
+# locale gen EN FR
+sudo cp locale.gen squashfs-root/etc/
+sudo chown root squashfs-root/etc/locale.gen
+sudo chmod 644 squashfs-root/etc/locale.gen
+sudo chroot squashfs-root locale-gen
+
 # update pacman in chroot , install packages and create user for X11 launch
 sudo chroot squashfs-root /root/update-pacman-database.sh
 sudo chroot squashfs-root /root/add-packages-to-arch.sh
