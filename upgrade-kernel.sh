@@ -7,6 +7,7 @@ sed -i 's/.*HOOKS=.*/HOOKS="base udev memdisk archiso_shutdown archiso archiso_l
 # https://bbs.archlinux.org/viewtopic.php?pid=1897394#p1897394
 pacman -S --noconfirm libsystemd lib32-systemd
 pacman -Syu --noconfirm archiso linux linux-headers --overwrite /usr/lib\*/p11-kit-trust.so
+mkinitcpio -p linux
 
 # status montage
 echo ""
