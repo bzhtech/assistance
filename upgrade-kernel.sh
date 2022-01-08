@@ -5,4 +5,12 @@ sed -i 's/.*HOOKS=.*/HOOKS="base udev memdisk archiso_shutdown archiso archiso_l
 
 # upgrade kernel and archiso
 # https://bbs.archlinux.org/viewtopic.php?pid=1897394#p1897394
-pacman -Syu --noconfirm archiso linux --overwrite /usr/lib\*/p11-kit-trust.so
+pacman -S --noconfirm libsystemd lib32-systemd
+pacman -Syu --noconfirm archiso linux linux-headers --overwrite /usr/lib\*/p11-kit-trust.so
+
+# status montage
+echo ""
+echo "cat /etc/fstab"
+cat /etc/fstab
+echo "fin cat /etc/fstab"
+echo ""

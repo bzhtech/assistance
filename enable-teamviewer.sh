@@ -1,2 +1,2 @@
 #!/bin/bash
-systemctl enable teamviewerd
+sudo systemctl enable teamviewerd
