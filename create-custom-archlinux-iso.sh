@@ -3,7 +3,12 @@
 iso="archlinux-2021.12.01-x86_64.iso"
 origin="http://archlinux.mirrors.ovh.net/archlinux/iso/2021.12.01"
 
-project="${GITHUB_WORKSPACE}/self"
+if [ ! -z ${GITHUB_WORKSPACE} ];
+then
+    project="${GITHUB_WORKSPACE}/self"
+else 
+    project="$(pwd)"
+fi
 
 function create_CustomISO() 
 {
@@ -29,7 +34,7 @@ do
 done
 
 # prepare and clean need folders
-[[ -d $project/customiso ]] && rm -rf $project/customiso
+[[ -d $project/customiso ]] && sudo rm -rf $project/customiso
 [[ ! -d /tmp/archiso ]] && mkdir /tmp/archiso
 [[ ! -d $project/customiso ]] && mkdir -p $project/customiso
 [[ ! -d $project/output ]] && mkdir -p $project/output
