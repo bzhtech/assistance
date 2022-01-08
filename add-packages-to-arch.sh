@@ -17,6 +17,3 @@ lxqt
 
 # create package list
 LANG=C pacman -Sl | awk '/\[installed\]$/ {print $1 "/" $2 "-" $3}' > /pkglist.txt
-
-# clean cache
-pacman -Scc --noconfirm

@@ -83,7 +83,9 @@ sudo chroot squashfs-root su - archlinux /home/archlinux/enable-teamviewer.sh
 
 # create update kernel and move new kernel from squashfs to new iso directory
 sudo cp $project/upgrade-kernel.sh squashfs-root/root/
+sudo cp $project/clean-pacman-cache.sh squashfs-root/root/
 sudo chroot squashfs-root /root/upgrade-kernel.sh
+sudo chroot squashfs-root /root/clean-pacman-cache.sh
 sudo mv squashfs-root/boot/vmlinuz-linux $project/customiso/arch/boot/x86_64/vmlinuz
 sudo mv squashfs-root/boot/initramfs-linux.img $project/customiso/arch/boot/x86_64/archiso.img
 sudo rm squashfs-root/boot/initramfs-linux-fallback.img
