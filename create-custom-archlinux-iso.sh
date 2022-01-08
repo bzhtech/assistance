@@ -83,6 +83,7 @@ sudo chroot squashfs-root su - archlinux /home/archlinux/enable-teamviewer.sh
 
 # install graphical interface
 sudo cp $project/add-graphical-interface.sh squashfs-root/root/
+sudo chmod +x squashfs-root/root/add-graphical-interface.sh
 sudo chroot squashfs-root /root/add-graphical-interface.sh
 
 # create update kernel and move new kernel from squashfs to new iso directory
