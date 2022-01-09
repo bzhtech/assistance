@@ -80,7 +80,7 @@ sudo mount --bind /dev squashfs-root/dev
 
 # locale gen EN FR
 echo "locale-gen"
-sudo cp locale.gen squashfs-root/etc/
+sudo cp $project/locale.gen squashfs-root/etc/
 sudo chown root squashfs-root/etc/locale.gen
 sudo chmod 644 squashfs-root/etc/locale.gen
 sudo chroot squashfs-root locale-gen
