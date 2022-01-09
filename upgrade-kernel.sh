@@ -8,10 +8,3 @@ sed -i 's/.*HOOKS=.*/HOOKS="base udev memdisk archiso archiso_loop_mnt archiso_p
 pacman -S --noconfirm libsystemd
 pacman -Syu --noconfirm archiso linux linux-headers --overwrite /usr/lib\*/p11-kit-trust.so
 mkinitcpio -p linux
-
-# status montage
-echo ""
-echo "cat /etc/fstab"
-cat /etc/fstab
-echo "fin cat /etc/fstab"
-echo ""

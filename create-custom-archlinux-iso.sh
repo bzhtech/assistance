@@ -131,9 +131,13 @@ echo "update kernel"
 echo "=================================="
 sudo cp $project/upgrade-kernel.sh squashfs-root/root/
 sudo chroot squashfs-root /root/upgrade-kernel.sh
-sudo mv squashfs-root/boot/vmlinuz-linux $project/customiso/arch/boot/x86_64/vmlinuz
-sudo mv squashfs-root/boot/initramfs-linux.img $project/customiso/arch/boot/x86_64/archiso.img
-#sudo rm squashfs-root/boot/initramfs-linux-fallback.img
+
+# moving new kernel && initramfs to correct folder
+echo "=================================="
+echo "moving kernel && initramfs to /arch/boot/x86_64/"
+echo "=================================="
+sudo mv squashfs-root/boot/vmlinuz-linux $project/customiso/arch/boot/x86_64/vmlinuz-linux
+sudo mv squashfs-root/boot/initramfs-linux.img $project/customiso/arch/boot/x86_64/initramfs-linux.img
 
 # clean pacman cache
 echo "=================================="
