@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # clean cache
-pacman -Scc --noconfirm
+paccache -rk0
