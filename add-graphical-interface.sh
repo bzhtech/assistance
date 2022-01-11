@@ -7,4 +7,5 @@ systemctl disable iwd
 sed -i "s/#pam-service=/pam-service=/g" /etc/lightdm/lightdm.conf
 sed -i "s/#pam-autologin-service=/pam-autologin-service=/g" /etc/lightdm/lightdm.conf
 sed -i "s/#autologin-user-timeout=/autologin-user-timeout=/g" /etc/lightdm/lightdm.conf
-echo -e "autologin-user=archlinux" >> /etc/lightdm/lightdm.conf
+sed -i "s/#autologin-user=/autologin-user=archlinux/g" /etc/lightdm/lightdm.conf
+sed -i "s/#user-session=default/user-session=lxqt/g" /etc/lightdm/lightdm.conf
