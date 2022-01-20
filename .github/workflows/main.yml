@@ -18,13 +18,9 @@ jobs:
       - name: build iso
         run: |
            self/create-custom-archlinux-iso.sh
-      - name: Create release
-        uses: Roang-zero1/github-create-release-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Create GitHub release
-        uses: Roang-zero1/github-upload-release-artifacts-action@master
+      - name: create and upload release
+        uses: ncipollo/release-action@v1
         with:
-          args: ${{github.workspace}}/self/output/assistance.iso
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: ${{github.workspace}}/self/output/assistance.iso
+          token: ${{ secrets.GITHUB_TOKEN }}
+
