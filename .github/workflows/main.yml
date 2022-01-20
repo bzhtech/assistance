@@ -1,0 +1,30 @@
+on:
+  push:
+    tags:
+      - '*'
+jobs:
+  make-ipxe:
+    name: create iso
+    runs-on: self-hosted
+    steps:
+      - name: delete old files
+        run: |
+           sudo rm -rf ${GITHUB_WORKSPACE}/self
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          path: self
+      - name: build iso
+        run: |
+           self/create-custom-archlinux-iso.sh
+      - name: Create release
+        uses: Roang-zero1/github-create-release-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create GitHub release
+        uses: Roang-zero1/github-upload-release-artifacts-action@master
+        with:
+          args: ${{github.workspace}}/self/output/assistance.iso
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
