@@ -18,12 +18,13 @@ jobs:
       - name: build iso
         run: |
            self/create-custom-archlinux-iso.sh
-      - name: Upload binaries to release
-        uses: svenstaro/upload-release-action@2.2.1
+      - name: Create release
+        uses: Roang-zero1/github-create-release-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create GitHub release
+        uses: Roang-zero1/github-upload-release-artifacts-action@master
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ${{github.workspace}}/self/output/assistance.iso
-          asset_name: assistance.iso
-          tag: ${{ github.ref }}
-          overwrite: true
-          body: "Helpdesk Bootable Linux ISO with Teamviewer"
+          args: ${{github.workspace}}/self/output/assistance.iso
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
