@@ -30,7 +30,6 @@
 
 # Check dependencies.
 set -e
-set -x
 
 # Validate settings.
 [ "$TRACE" ] && set -x
