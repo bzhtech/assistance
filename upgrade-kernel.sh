@@ -5,6 +5,12 @@ sed -i 's/.*HOOKS=.*/HOOKS="base udev memdisk archiso archiso_loop_mnt archiso_p
 
 # upgrade kernel and archiso
 # https://bbs.archlinux.org/viewtopic.php?pid=1897394#p1897394
-pacman -S --noconfirm libsystemd
+pacman -Syu --noconfirm archlinux-keyring
+
+# repopulate pacman gpg keys
+pacman-key --populate archlinux
+
+# continue upgrading the full system
+pacman -Syu --noconfirm libsystemd
 pacman -Syu --noconfirm archiso linux linux-headers --overwrite /usr/lib\*/p11-kit-trust.so
 mkinitcpio -p linux
