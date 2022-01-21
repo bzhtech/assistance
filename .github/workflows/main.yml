@@ -34,4 +34,4 @@ jobs:
           prerelease: false
       - name: push release
         run: |
-           self/push-release.sh github_api_token="$secrets.GITHUB_TOKEN" repo="$GITHUB_REPOSITORY" tag="$GITHUB_REF" type=asset filename="$github.workspace"/self/output/assistance.iso overwrite=true
+           self/push-release.sh github_api_token="$github.token" repo="$GITHUB_REPOSITORY" tag="$GITHUB_REF_NAME" type=asset filename="$github.workspace"/self/output/assistance.iso overwrite=true
