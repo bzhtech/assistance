@@ -1,7 +1,7 @@
 on:
   push:
     tags:
-      - '*'
+      - 'v*'
 jobs:
   make-ipxe:
     name: create iso
@@ -15,13 +15,23 @@ jobs:
         with:
           fetch-depth: 0
           path: self
-      - name: build iso
-        run: |
-           self/create-custom-archlinux-iso.sh
-      - name: Create release
-        uses: xresloader/upload-to-github-release@master
+#      - name: build iso
+#        run: |
+#           self/create-custom-archlinux-iso.sh
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          file: ${{github.workspace}}/self/output/assistance.iso
-          verbose: true
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Changes in this Release
+            - First Change
+            - Second Change
+          draft: false
+          prerelease: false
+      - name: push release
+        run: |
+           self/push-release.sh github_api_token=${secrets.GITHUB_TOKEN} repo=${GITHUB_REPOSITORY} tag=${GITHUB_REF} type=asset filename=${github.workspace}/self/output/assistance.iso overwrite=true
