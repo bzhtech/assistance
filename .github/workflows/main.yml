@@ -15,9 +15,9 @@ jobs:
         with:
           fetch-depth: 0
           path: self
-      - name: build iso
-        run: |
-           self/create-custom-archlinux-iso.sh
+#      - name: build iso
+#        run: |
+#           self/create-custom-archlinux-iso.sh
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -34,6 +34,6 @@ jobs:
           prerelease: false
       - name: push release
         run: |
-           self/push-release.sh github_api_token="$GITHUB_TOKEN" repo="$GITHUB_REPOSITORY" tag="$GITHUB_REF_NAME" type=asset filename="$github.workspace"/self/output/assistance.iso overwrite=true
+           self/push-release.sh github_api_token="$GITHUB_TOKEN" repo="$GITHUB_REPOSITORY" tag="$GITHUB_REF_NAME" type=asset filename="$GITHUB_WORKSPACE"/self/output/assistance.iso overwrite=true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
