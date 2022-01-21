@@ -86,7 +86,7 @@ fi
 
 post_asset() {
   # Upload asset
-  echo "Uploading asset... " > /dev/tty
+  echo "Uploading asset... "
   # Construct url
   GH_ASSET="https://uploads.github.com/repos/$repo/releases/$release_id/assets?name=$1"
 
@@ -94,13 +94,13 @@ post_asset() {
 }
 
 rename_asset() {
-  echo "Renaming asset($1) from $2 to $3" > /dev/tty
+  echo "Renaming asset($1) from $2 to $3"
   curl -X PATCH -H "$AUTH" -H "Content-Type: application/json" \
     --data "{\"name\":\"$3\", \"label\":\"$3\"}" "$GH_REPO/releases/assets/$1"
 }
 
 delete_asset() {
-  echo "Deleting asset($1)... " > /dev/tty
+  echo "Deleting asset($1)... "
   curl -X "DELETE" -H "$AUTH" "$GH_REPO/releases/assets/$1"
 }
 
