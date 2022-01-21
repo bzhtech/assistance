@@ -80,6 +80,7 @@ echo "install && enable teamviewerd scripts"
 echo "=================================="
 sudo cp $project/add-aurutils-package-for-aur.sh squashfs-root/etc/skel/
 sudo cp $project/install-teamviewer.sh squashfs-root/etc/skel/
+sudo cp $project/install-anydesk.sh squashfs-root/etc/skel/
 sudo cp $project/enable-teamviewer.sh squashfs-root/etc/skel/
 
 # add support service
@@ -116,6 +117,12 @@ echo "=================================="
 sudo chroot squashfs-root su - archlinux /home/archlinux/add-aurutils-package-for-aur.sh
 sudo chroot squashfs-root su - archlinux /home/archlinux/install-teamviewer.sh
 sudo chroot squashfs-root su - archlinux /home/archlinux/enable-teamviewer.sh
+
+# install anydesk
+echo "=================================="
+echo "install anydesk"
+echo "=================================="
+sudo chroot squashfs-root su - archlinux /home/archlinux/install-anydesk.sh
 
 # install graphical interface
 echo "=================================="
