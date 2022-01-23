@@ -138,6 +138,7 @@ echo "update kernel"
 echo "=================================="
 sudo cp $project/upgrade-kernel.sh squashfs-root/root/
 sudo chroot squashfs-root /root/upgrade-kernel.sh
+sudo find squashfs-root/
 
 # moving new kernel && initramfs to correct folder
 echo "=================================="

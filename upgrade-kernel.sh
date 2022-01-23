@@ -14,3 +14,5 @@ pacman-key --populate archlinux
 pacman -Syu --noconfirm libsystemd
 pacman -Syu --noconfirm archiso linux linux-headers --overwrite /usr/lib\*/p11-kit-trust.so
 mkinitcpio -p linux
+
+find /boot
