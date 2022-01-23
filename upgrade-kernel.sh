@@ -15,4 +15,5 @@ pacman -Syu --noconfirm libsystemd
 pacman -Syu --noconfirm archiso linux linux-headers --overwrite /usr/lib\*/p11-kit-trust.so
 mkinitcpio -p linux
 
+echo "search file in /boot"
 find /boot
