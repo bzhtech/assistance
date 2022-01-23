@@ -23,3 +23,4 @@ jobs:
         with:
           name: assistance.iso
           path: ${{github.workspace}}/self/output/assistance.iso
+          retention-days: 2
